@@ -1,5 +1,6 @@
 "use client";
 
+import { handleUserMessage } from "@/app/lib/action";
 import { useModal } from "../hooks/use-modal-store";
 
 
@@ -18,9 +19,12 @@ const SendUserPM = () => {
 
     const formData = new FormData(e.currentTarget);
     formData.append("sessoinUrl", desiredUrl);
+    formData.append("address", signature as string)
 
     try {
       console.log(signature, desiredUrl)
+
+      handleUserMessage(formData)
 
       onClose();
     } catch (error) {
@@ -49,7 +53,7 @@ const SendUserPM = () => {
             onSubmit={handleSubmit}
             className="flex flex-col items-center justify-center bg-gray-900 p-6 rounded-lg shadow-lg "
           >
-            <label htmlFor="vaultName" className="text-white text-lg mb-2">
+            <label htmlFor="title" className="text-white text-lg mb-2">
               title:
             </label>
             <input

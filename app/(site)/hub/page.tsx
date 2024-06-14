@@ -2,7 +2,7 @@ import HeaderHub from "@/app/componets/header-hub";
 import { getSession } from "@/app/lib/action";
 import { Job } from "@/app/models/jobs";
 import Image from "next/image";
-import React from "react";
+
 
 const Page = async () => {
 
@@ -49,11 +49,14 @@ const Page = async () => {
 
   const jobRequests = await Job.find({}).lean()
 
+  const jobInProgress = await Job.find({worker: isLogged.userId}).lean()
+
+
 
   return (
     <main className="w-full min-h-screen p-5">
 
-      <HeaderHub isLogged={isLogged} serverJobs={jobRequests} />
+      <HeaderHub isLogged={isLogged} serverJobs={jobRequests} jobsInProg={jobInProgress} />
 
       <div className="bg-[#555] p-4">
 

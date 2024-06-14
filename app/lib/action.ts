@@ -11,6 +11,7 @@ import { compare, hash } from "bcryptjs";
 import { sendMail } from "./mail";
 import { Job } from "../models/jobs";
 import { revalidatePath } from "next/cache";
+import { Message } from "../models/Message";
 
 const sendMessage = `Hi, welcome to hell`;
 
@@ -176,6 +177,37 @@ export const AcceptSingleJob = async (jobId: string) => {
   } catch (error) {
     console.log("error");
     return error;
+  }
+};
+
+// handle message between user and worker
+export const handleUserMessage = async (formData: FormData) => {
+  const user = await getSession()
+  
+  const { title, message, sessoinUrl, address } = Object.fromEntries(formData);
+
+  try {
+    console.log("handle user message");
+
+    console.log(address, "account");
+    console.log(message, "message");
+
+    await dbConnect();
+
+    const userMessage = new Message({
+      message: message as string,
+      title: title as string,
+      to: address as string,
+      from: user.userId as string,
+    });
+
+    await userMessage.save();
+
+    revalidatePath(sessoinUrl as string);
+
+    console.log(userMessage);
+  } catch (error) {
+    console.log("error");
   }
 };
 
