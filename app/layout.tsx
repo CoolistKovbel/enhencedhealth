@@ -3,6 +3,7 @@ import { inter } from "./componets/ui/fonts";
 import MainHeader from "./componets/mainheader";
 import "./globals.css";
 import MainFooter from "./componets/mainfooter";
+import { ModalProvider } from "./componets/providers/model-provider";
 
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
         <MainHeader />
         {children}
         <MainFooter />
+        <ModalProvider />
       </body>
     </html>
   );

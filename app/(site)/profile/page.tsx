@@ -1,5 +1,6 @@
 import { getSession } from "@/app/lib/action";
 import { getCurrenbyUserId } from "@/app/lib/getUserLib";
+import { Job } from "@/app/models/jobs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,25 +8,13 @@ import React from "react";
 const Page = async () => {
   const user = await getSession();
 
-  const isDev = user.role === 'DEV'
+  const isDev = user.role === "DEV";
 
   const serverUser = await getCurrenbyUserId(user.userId as string);
 
+  const jobRequests = await Job.find({}).lean();
 
-  const jobs = [
-    {
-      title: "sell houses website",
-      description: "NEed to create a webisite where a user will be able to buy the houses that i put on the site",
-      accepted: false,
-    },
-    {
-      title: "lifestyle blog",
-      description: "NEed to create a webisite where it is a blog.",
-      accepted: false,
-    }
-  ]
-
-
+  console.log(jobRequests);
 
   return (
     <main className="min-h-screen flex-col items-center gap-4 p-5">
@@ -66,27 +55,31 @@ const Page = async () => {
           <h2 className="text-2xl font-bold">Recent Jobs:</h2>
 
           <div className="flex flex-col gap-4">
-            {
-              jobs.map((item) => (
-                <div key={crypto.randomUUID()}  className="bg-[#222] p-4 rounded-lg  ">
-
-                  <div className="">
-                    <h2 className="text-2xl">{item.title}</h2>
-                    <h2 className="text-sm">{item.description}</h2>
-                  </div>
-
-                  <span className={item.accepted ? "bg-green-500 p-2 inline-block" : "bg-red-500 p-2 inline-block"}>accepted: {item.accepted ? "accepted" : "no accepted"}</span>
-
+            {jobRequests.map((item) => (
+              <div
+                key={crypto.randomUUID()}
+                className="bg-[#222] p-4 rounded-lg  "
+              >
+                <div className="">
+                  <h2 className="text-2xl">{item.title}</h2>
+                  <h2 className="text-sm">{item.description}</h2>
                 </div>
-              ))
-            }
+
+                <span
+                  className={
+                    item.accepted
+                      ? "bg-green-500 p-2 inline-block"
+                      : "bg-red-500 p-2 inline-block"
+                  }
+                >
+                  <Link href={`/hub/job/${item._id}`}>
+                    accepted: {item.accepted ? "accepted" : "no accepted"}
+                  </Link>
+                </span>
+              </div>
+            ))}
           </div>
         </div>
-
-        
-
-
-
       </section>
     </main>
   );

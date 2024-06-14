@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 import { compare, hash } from "bcryptjs";
 import { sendMail } from "./mail";
 import { Job } from "../models/jobs";
+import { revalidatePath } from "next/cache";
 
 const sendMessage = `Hi, welcome to hell`;
 
@@ -130,32 +131,53 @@ export async function MakeARequest(formData: FormData) {
 
     await yon.save();
 
-    return "success"
+    return "success";
   } catch (error) {
     console.log(error);
-    return "fail"
+    return "fail";
   }
 }
 
 // grab all market request
-export async function  SingleJobRequest(jobID:string ) {
+export async function SingleJobRequest(jobID: string) {
   try {
-    console.log("grabbing single job")
+    console.log("grabbing single job");
 
-    await dbConnect()
+    await dbConnect();
 
+    const singleJob = await Job.find({ _id: jobID }).lean();
 
-    const singleJob = await Job.find({_id: jobID}).lean()
+    console.log(singleJob);
 
-
-    console.log(singleJob)
-
-    return singleJob
-
+    return singleJob;
   } catch (error) {
-    console.log("error")
+    console.log("error");
   }
 }
+
+// handle job acception
+export const AcceptSingleJob = async (jobId: string) => {
+  try {
+    console.log("accept single job", jobId);
+    const user = await getSession();
+    await dbConnect();
+
+    const gg = await Job.find({ _id: jobId });
+
+    gg[0].accepted = true;
+    gg[0].completed = false;
+    gg[0].worker = user.userId as string;
+
+    const updated = await gg[0].save();
+
+    revalidatePath(`/hub/job/${jobId}`);
+
+    console.log(updated);
+  } catch (error) {
+    console.log("error");
+    return error;
+  }
+};
 
 // handle user register
 export const Registrar = async (
@@ -200,8 +222,6 @@ export const handleNewJobRequest = async (userInput: FormData) => {
     console.log("handling new jobn");
 
     await dbConnect();
-
-
   } catch (error) {
     console.log(error);
   }

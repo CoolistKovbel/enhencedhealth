@@ -1,7 +1,7 @@
 
 import { create } from "zustand";
 
-export type ModalType =  "CreaateTokenVaultTransfer" | "CreateVault"
+export type ModalType =  "SendUserPM" | "SendPayment"
 
 interface ModalData {
   server?: any;

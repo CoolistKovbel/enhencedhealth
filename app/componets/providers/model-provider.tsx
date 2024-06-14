@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import UploadImage from "../modals/uploadImage";
+import SendUserPM from "../modals/sendPM";
 
 export const ModalProvider = () => {
   const [isMounted, setIsmounted] = useState(false);
@@ -16,7 +16,7 @@ export const ModalProvider = () => {
 
   return (
     <>
-      <UploadImage />
+      <SendUserPM />
     </>
   );
 };

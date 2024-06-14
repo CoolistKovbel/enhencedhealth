@@ -7,6 +7,9 @@ export interface IJob {
   title?: string;
   description?: string;
   reward?: string;
+  accepted?: boolean;
+  completed?: boolean;
+  worker?: string;
 }
 
 const JobSchema = new mongoose.Schema<IJob>(
@@ -19,6 +22,18 @@ const JobSchema = new mongoose.Schema<IJob>(
     },
     reward: {
       type: String,
+    },
+    accepted: {
+      type: Boolean,
+      default: false
+    },
+    completed: {
+      type: Boolean,
+      default: false
+    },
+    worker: {
+      type: String,
+      
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

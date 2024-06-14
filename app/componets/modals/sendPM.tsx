@@ -1,15 +1,17 @@
 "use client";
 
-import { useModal } from "@/app/hooks/use-modal-store";
+import { useModal } from "../hooks/use-modal-store";
 
 
-const CreateVault = () => {
+
+
+const SendUserPM = () => {
   const { isOpen, onClose, type, signature } = useModal();
 
   const urlParts = window.location.href.split("/");
   const desiredUrl = "/" + urlParts.slice(3).join("/");
 
-  const isModalOpen = isOpen && type === "CreateVault";
+  const isModalOpen = isOpen && type === "SendUserPM";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ const CreateVault = () => {
     formData.append("sessoinUrl", desiredUrl);
 
     try {
-      await crv(formData);
+      console.log(signature, desiredUrl)
 
       onClose();
     } catch (error) {
@@ -40,7 +42,7 @@ const CreateVault = () => {
       <div className="bg-[#222] rounded-md p-4 w-[300px] md:w-[600px] overflow-auto h-[50%]">
         <div className="w-full h-full text-white flex justify-between flex-col relative">
           <h2 className="text-2xl md:text-4xl text-center font-bold">
-            Create Vault
+            Send Message to: {signature}
           </h2>
 
           <form
@@ -48,41 +50,29 @@ const CreateVault = () => {
             className="flex flex-col items-center justify-center bg-gray-900 p-6 rounded-lg shadow-lg "
           >
             <label htmlFor="vaultName" className="text-white text-lg mb-2">
-              name
+              title:
             </label>
             <input
               type="string"
               className="w-full bg-gray-800 text-white rounded-md py-2 px-4 mb-4 focus:outline-none focus:ring focus:border-blue-300"
               placeholder="Enter vault name"
-              name="vaultName"
-              id="vaultName"
+              name="title"
+              id="title"
             />
 
             <label
-              htmlFor="vaultMultiplier"
+              htmlFor="message"
               className="text-white text-lg mb-2"
             >
-              multiplier
+              Message:
             </label>
-            <input
-              type="number"
-              className="w-full bg-gray-800 text-white rounded-md py-2 px-4 mb-4 focus:outline-none focus:ring focus:border-blue-300"
-              placeholder="Enter token amount"
-              name="vaultMultiplier"
-              id="vaultMultiplier"
+            <textarea
+              className="w-full bg-gray-800 text-white rounded-md py-2 px-4 mb-4 overflow-auto resize-none w-full h-[400px]"
+              placeholder="Enter message"
+              name="message"
+              id="message"
             />
 
-            <label htmlFor="vaultType" className="text-white text-lg mb-2">
-              vault type
-            </label>
-            <select
-              name="vaultType"
-              id="vaultType"
-              className="w-full bg-gray-800 text-white rounded-md py-2 px-4 mb-4 focus:outline-none focus:ring focus:border-blue-300"
-            >
-              <option value="compound">compound</option>
-              <option value="auto-compound">auto-compound</option>
-            </select>
 
             <button
               type="submit"
@@ -109,10 +99,11 @@ const CreateVault = () => {
               />
             </svg>
           </button>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default CreateVault;
+export default SendUserPM;
