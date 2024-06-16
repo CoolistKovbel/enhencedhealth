@@ -7,13 +7,13 @@ export default function Home() {
       title: "Specialing Mounting Tvs",
       description:
         "Having trouble putting up a tv and dont want to put it on its default position. Let us provide you with the best quaility service we can offer.",
-      image: "/socialmakfea2.avif",
+      image: "/tvMounting.webp",
     },
     {
       title: " Tired of drinking tap water",
       description:
         "We will be able to provide you with a filter system installation for your sink. ",
-      image: "/marketingfea1.avif",
+      image: "/sinkfilter.webp",
     },
     {
       title: " What ever the problem we will help to find a solution ",
@@ -76,6 +76,7 @@ export default function Home() {
                 fill
               />
             </div>
+
           </article>
         ))}
       </section>
