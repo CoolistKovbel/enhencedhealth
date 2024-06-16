@@ -7,9 +7,9 @@ import { ModalProvider } from "./componets/providers/model-provider";
 
 
 export const metadata: Metadata = {
-  title: "Defenmarketing",
+  title: "EpentricInstall",      
   description:
-    "Welcome to defenmarketing, a decentralized application allow you to be able to help or request to market. Earning you an extra buck just for marketing.",
+    "Welcome to EpentricInstall , a service in which we help others with installations from home appliaences to other devices, where you can pay with crypto",
 };
 
 export default function RootLayout({

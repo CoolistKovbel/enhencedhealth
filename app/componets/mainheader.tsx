@@ -13,7 +13,7 @@ const MainHeader = async () => {
     <header className="flex items-center justify-between w-full bg-[#222] p-4 ">
       <h2 className="p-2 fomt-bold ">
         <Link href="/" className="flex items-center flex-row-reverse gap-4 font-bold">
-          DefenMarketing
+          EpentricInstall
           {/* <Image src="/logo.png" alt=";ogsngs" width={80} height={80} /> */}
         </Link>
       </h2>

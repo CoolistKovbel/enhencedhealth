@@ -4,20 +4,21 @@ import Link from "next/link";
 export default function Home() {
   const data = [
     {
-      title: "Specialing in social marketing",
-      description: "Getting from 0 followers to 1000 is our speciality",
+      title: "Specialing Mounting Tvs",
+      description:
+        "Having trouble putting up a tv and dont want to put it on its default position. Let us provide you with the best quaility service we can offer.",
       image: "/socialmakfea2.avif",
     },
     {
-      title: " Need to market a product or design ",
+      title: " Tired of drinking tap water",
       description:
-        "Chat with us and we will be able to discouse the best out come we can provide so your content reaches the right people.",
+        "We will be able to provide you with a filter system installation for your sink. ",
       image: "/marketingfea1.avif",
     },
     {
-      title: " Saftey and security ",
+      title: " What ever the problem we will help to find a solution ",
       description:
-        " Working with us we understand privicy, we can always have an open or close session depending on your preferences",
+        " We are here to help you with any help you may need inside your home. We are here to be able to make your life easier.",
       image: "/socialmakfea2.avif",
     },
   ];
@@ -25,15 +26,15 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center gap-4 p-5">
       <div className="w-full flex items-center gap-4 flex-col justify-around md:flex-row ">
-
         <div className="flex flex-col gap-2 justify-between items-start bg-[#222] md:w-[50%] p-4 rounded-lg h-[300px]">
           <header className="w-full">
             <h1 className="text-3xl font-bold  mb-4 capitalize">
-              Need some marketing done
+              Need a service to get you through the hardest problems
             </h1>
 
             <p className="text-md text-gray-500">
-              For the right price we can help you out.
+              Contact us for a quote today and we will be able to go over and
+              provide service for your probelm.
             </p>
           </header>
 
