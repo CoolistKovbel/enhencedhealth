@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Page = async (props) => {
+const Page = async (props:any) => {
 
   console.log("gg", props.params)
 
