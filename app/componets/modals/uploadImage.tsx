@@ -1,8 +1,7 @@
 "use client";
-
-import { useModal } from "@/app/hooks/use-modal-store";
 import { ethers } from "ethers";
 import { useState } from "react";
+import { useModal } from "../hooks/use-modal-store";
 
 const UploadImage = () => {
   const { isOpen, onClose, type, signature } = useModal();
@@ -12,7 +11,7 @@ const UploadImage = () => {
   const urlParts = window.location.href.split("/");
   const desiredUrl = "/" + urlParts.slice(3).join("/");
 
-  const isModalOpen = isOpen && type === "CreaateTokenVaultTransfer";
+  const isModalOpen = isOpen && type === "SendPayment";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
