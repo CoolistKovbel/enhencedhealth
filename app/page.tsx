@@ -13,13 +13,12 @@ export default function Home() {
       title: " Tired of weird hot and cold heating presure",
       description:
         "We can have a look at it for you and we will be able to get it done same day",
-      image: "/sinkfilter.webp",
+      image: "/boilderfeature.jpg",
     },
     {
       title: " What ever the problem we will help to find a solution ",
       description:
         " We are here to help you with any help you may need inside your home. We are here to be able to make your life easier.",
-      image: "/boilderfeature.jpg",
     },
   ];
 
@@ -64,19 +63,30 @@ export default function Home() {
               i % 2 !== 0 ? "bg-[#999] flex-row-reverse" : "flex-row"
             }`}
           >
-            <header className="md:w-[60%] bg-[#111] p-10">
-              <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
-              <p className="text-md">{item.description}</p>
-            </header>
+            {!item.image && (
+              <header className="md:w-[60%] bg-[#111] p-10">
+                <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
+                <p className="text-md">{item.description}</p>
+              </header>
+            )}
 
-            <div className="w-[300px] h-[300px] relative">
-              <Image
-                src={item.image}
-                alt="feature of createing a profile"
-                fill
-              />
-            </div>
-
+            {item.image && (
+              <div>
+                <header className="md:w-[60%] bg-[#111] p-10">
+                  <h2 className="text-3xl font-bold capitalize">
+                    {item.title}
+                  </h2>
+                  <p className="text-md">{item.description}</p>
+                </header>
+                <div className="w-[300px] h-[300px] relative">
+                  <Image
+                    src={item.image}
+                    alt="feature of createing a profile"
+                    fill
+                  />
+                </div>
+              </div>
+            )}
           </article>
         ))}
       </section>
