@@ -2,7 +2,7 @@ import JobAcceptedComp from "@/app/componets/job-accepted-footer";
 import JobFooter from "@/app/componets/job-footer";
 import { SingleJobRequest } from "@/app/lib/action";
 
-const Page = async (props) => {
+const Page = async (props:any) => {
   const gg: any = await SingleJobRequest(props.params.id);
 
   console.log("gg", gg[0].accepted);
