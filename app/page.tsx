@@ -10,16 +10,16 @@ export default function Home() {
       image: "/tvMounting.webp",
     },
     {
-      title: " Tired of drinking tap water",
+      title: " Tired of weird hot and cold heating presure",
       description:
-        "We will be able to provide you with a filter system installation for your sink. ",
+        "We can have a look at it for you and we will be able to get it done same day",
       image: "/sinkfilter.webp",
     },
     {
       title: " What ever the problem we will help to find a solution ",
       description:
         " We are here to help you with any help you may need inside your home. We are here to be able to make your life easier.",
-      image: "/socialmakfea2.avif",
+      image: "/boilderfeature.jpg",
     },
   ];
 
