@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
 
+import NFTContractAbi from "../lib/nftContract.json";
+
 // NFT Contract /testnet
 export const ContractNFTCollection =
   "0xE5A004AE56444feF359C55957030A7724EF0de2E";

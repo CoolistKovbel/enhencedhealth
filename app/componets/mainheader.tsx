@@ -43,7 +43,7 @@ const MainHeader = async () => {
         ) : (
           <div className="w-[50%] flex items-center gap-4">
             <Link href="/quote">Get a quote</Link>
-            
+            <Link href="/mint">Mint</Link>
           </div>
         )}
 
