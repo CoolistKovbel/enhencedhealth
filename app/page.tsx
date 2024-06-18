@@ -63,6 +63,8 @@ export default function Home() {
               i % 2 !== 0 ? "bg-[#999] flex-row-reverse" : "flex-row"
             }`}
           >
+
+            
             {!item.image && (
               <header className="md:w-[60%] bg-[#111] p-10">
                 <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
@@ -71,8 +73,8 @@ export default function Home() {
             )}
 
             {item.image && (
-              <div>
-                <header className="md:w-[60%] bg-[#111] p-10">
+              <div className="md:w-[60%] bg-[#111] p-10">
+                <header >
                   <h2 className="text-3xl font-bold capitalize">
                     {item.title}
                   </h2>

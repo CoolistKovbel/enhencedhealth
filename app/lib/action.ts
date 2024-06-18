@@ -12,6 +12,7 @@ import { sendMail } from "./mail";
 import { Job } from "../models/jobs";
 import { revalidatePath } from "next/cache";
 import { Message } from "../models/Message";
+import { mintNFT } from "./web3";
 
 const sendMessage = `Hi, welcome to hell`;
 
@@ -25,6 +26,21 @@ export const getSession = async () => {
 
   return session;
 };
+
+export const MintUserHealthPack = async (amount:any) => {
+  try {
+    console.log("result of the amount.........", amount)
+    
+    const gg = await mintNFT(amount)
+
+    return gg
+
+  } catch (error) {
+    console.log("error")
+    console.log(error)
+  }
+}
+
 
 // Form actions
 export const login = async (
