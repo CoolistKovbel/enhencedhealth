@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+
   const data = [
     {
       title: "Specialing Mounting Tvs",
@@ -24,7 +25,9 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-4 p-5">
+
       <div className="w-full flex items-center gap-4 flex-col justify-around md:flex-row ">
+
         <div className="flex flex-col gap-2 justify-between items-start bg-[#222] md:w-[50%] p-4 rounded-lg h-[300px]">
           <header className="w-full">
             <h1 className="text-3xl font-bold  mb-4 capitalize">
@@ -53,6 +56,7 @@ export default function Home() {
             className="rounded-full drop-shadow-lg"
           />
         </div>
+
       </div>
 
       <section className="flex flex-col gap-4" id="features">
@@ -66,27 +70,31 @@ export default function Home() {
 
             
             {!item.image && (
-              <header className="md:w-[60%] bg-[#111] p-10">
+              <header className="md:w-[80%] bg-[#111] p-10">
                 <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
                 <p className="text-md">{item.description}</p>
               </header>
             )}
 
             {item.image && (
-              <div className="md:w-[60%] bg-[#111] p-10">
-                <header >
+              <div className="md:w-[100%] bg-[#111] p-10 flex md:flex-row justify-between justify-center flex-col">
+
+                <header className="flex flex-col gap-4 mb-4 md:mb-0" >
                   <h2 className="text-3xl font-bold capitalize">
                     {item.title}
                   </h2>
                   <p className="text-md">{item.description}</p>
                 </header>
-                <div className="w-[300px] h-[300px] relative">
+
+                <div className="w-[300px] h-[300px] relative mx-auto">
                   <Image
                     src={item.image}
                     alt="feature of createing a profile"
                     fill
                   />
                 </div>
+
+
               </div>
             )}
           </article>
@@ -155,6 +163,7 @@ export default function Home() {
         className="p-2 bg-[#333] w-full h-[150px] items-center flex-col md:flex-row mx-auto flex justify-around rounded-lg mt-10"
         id="contact"
       >
+        
         <form className="flex items-center gap-4 w-[60%] justify-around">
           <header className="flex flex-col gap-4 w-[100%] ">
             <h2 className="text-2xl font-bold mb-2 uppercase">Get updates</h2>
@@ -173,6 +182,7 @@ export default function Home() {
             update Email
           </button>
         </form>
+
       </div>
     </main>
   );

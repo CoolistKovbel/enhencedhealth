@@ -21,18 +21,17 @@ const HeaderHub = ({ isLogged, serverJobs, jobsInProg }: HeaderHub) => {
     setWorkerMarkerProgress((prev) => !prev);
   };
 
-  console.log(jobsInProg)
+  
 
   return (
     <header className="w-full p-10 bg-[#111] flex flex-col gap-2 ">
 
       <h2 className="text-2xl md:text-4xl font-bold">
-        Welcome to the DefenMarketing Hub
+        Welcome to EpentricInstall Hub
       </h2>
 
       <p className="text-sm text-gray-500">
-        Looking to make a request or help some customer handle their marketing
-        request.
+        Need help or a service request, request one now. We will have one of our personal be able to handle the request, just be patient.
       </p>
 
       <div className="flex items-center justifty-between w-full p-4 gap-4 font-bold">

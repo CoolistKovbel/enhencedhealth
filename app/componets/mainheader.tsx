@@ -3,6 +3,7 @@ import React from "react";
 import LogoutButton from "./logoutbutton";
 import { getSession } from "../lib/action";
 import Image from "next/image";
+import UserHeaderDropdownmenu from "./userHeaderDropdownmenu";
 
 const MainHeader = async () => {
   const user = await getSession();
@@ -11,6 +12,7 @@ const MainHeader = async () => {
 
   return (
     <header className="flex items-center justify-between w-full bg-[#222] p-4 ">
+
       <h2 className="p-2 fomt-bold ">
         <Link href="/" className="flex items-center flex-row-reverse gap-4 font-bold">
           EpentricInstall
@@ -33,12 +35,10 @@ const MainHeader = async () => {
             >
               Hub
             </Link>
-            <Link
-              href="/profile"
-              className="bg-[#333] p-3 rounded-lg hover:bg-[#222]"
-            >
-              Profile
-            </Link>
+
+            <UserHeaderDropdownmenu />
+
+
           </div>
         ) : (
           <div className="w-[50%] flex items-center gap-4">
@@ -47,11 +47,7 @@ const MainHeader = async () => {
           </div>
         )}
 
-        {isLogged ? (
-          <div>
-            <LogoutButton />
-          </div>
-        ) : (
+        {!isLogged &&  (
           <div className="w-[50%] flex items-center justify-around">
             <Link href="/login">Login</Link>
             <Link href="/register">Register</Link>

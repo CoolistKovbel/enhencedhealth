@@ -61,13 +61,13 @@ const Page = async () => {
       <div className="bg-[#555] p-4">
 
         <header>
-          <h2 className="text-4xl font-bold">Recently Completed Sites:</h2>
+          <h2 className="text-4xl font-bold">Jobs we can do</h2>
           <p className="text-sm text-gray-300">
             We can quick create a custom blog, recipe, contact site, etc.
           </p>
         </header>
 
-        <div className=" ">
+        {/* <div className=" ">
 
           {recentlyCompleted.length > 0 ? (
             <div className="flex flex-col md:flex-row flex-wrap gap-4 p-4 h-[800px] w-full overflow-auto justify-center items-center">
@@ -96,7 +96,7 @@ const Page = async () => {
             </div>
           )}
 
-        </div>
+        </div> */}
 
 
       </div>
