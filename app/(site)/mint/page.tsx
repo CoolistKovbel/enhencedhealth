@@ -25,7 +25,7 @@ const Page = async () => {
       </header>
 
       <div className="p-10 flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">E'hencedHealth</h2>
+        <h2 className="text-2xl font-bold">E&aposhencedHealth</h2>
         <p className="text-sm text-gray-500">
           There are over 222 unique verations of there health symbol this
           basically going to allow you to get discounts of their products that
