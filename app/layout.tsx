@@ -5,11 +5,10 @@ import "./globals.css";
 import MainFooter from "./componets/mainfooter";
 import { ModalProvider } from "./componets/providers/model-provider";
 
-
 export const metadata: Metadata = {
-  title: "EpentricInstall",      
+  title: "EEjurwonder Home Service ",
   description:
-    "Welcome to EpentricInstall , a service in which we help others with installations from home appliaences to other devices, where you can pay with crypto",
+    "Welcome to Ejurwonder Home Service  , a service in which we can help you with your kitchken, bed, and bathroom coridors, or even help install applicences, bringong you a happy home without the too much of the hassle. Afforable allowing you to use crypto as our #1 paymant source",
 };
 
 export default function RootLayout({

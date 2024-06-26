@@ -12,15 +12,18 @@ const MainHeader = async () => {
 
   return (
     <header className="flex items-center justify-between w-full bg-[#222] p-4 ">
-
       <h2 className="p-2 fomt-bold ">
-        <Link href="/" className="flex items-center flex-row-reverse gap-4 font-bold">
-          EpentricInstall
+        <Link
+          href="/"
+          className="flex items-center flex-row-reverse gap-4 font-bold"
+        >
+          Ejurwonder Home Service 
           {/* <Image src="/logo.png" alt=";ogsngs" width={80} height={80} /> */}
         </Link>
       </h2>
 
       <nav className="flex items-center justify-between w-[60%] bg-[#111] p-4 rounded-lg">
+
         {isLogged ? (
           <div className="w-[50%] flex items-center gap-4">
             <Link
@@ -37,8 +40,6 @@ const MainHeader = async () => {
             </Link>
 
             <UserHeaderDropdownmenu />
-
-
           </div>
         ) : (
           <div className="w-[50%] flex items-center gap-4">
@@ -47,12 +48,13 @@ const MainHeader = async () => {
           </div>
         )}
 
-        {!isLogged &&  (
+        {!isLogged && (
           <div className="w-[50%] flex items-center justify-around">
             <Link href="/login">Login</Link>
             <Link href="/register">Register</Link>
           </div>
         )}
+
       </nav>
     </header>
   );

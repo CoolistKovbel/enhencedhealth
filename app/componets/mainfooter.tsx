@@ -8,7 +8,7 @@ const MainFooter = () => {
         <div className='flex items-center justify-between flex-col md:flex-row w-full '>
 
             <div className='w-full p-5'>
-                <h2 className='text-2xl'><Link href="/">EpentricInstall</Link></h2>
+                <h2 className='text-2xl font-bold'><Link href="/">EEjurwonder Home Service</Link></h2>
                 <p className='text-gray-500'>A service that helps you to get your probelems done.</p>
             </div>
 
