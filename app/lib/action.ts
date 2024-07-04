@@ -59,7 +59,6 @@ export const login = async (
     const existingBySD = await User.findOne({ sig: sign });
 
     if (existingBySD) {
-      // b -
       const verify = ethers.utils.verifyMessage(sendMessage, sign);
 
       console.log(verify, "in the server actions");
@@ -261,7 +260,6 @@ export const Registrar = async (state: any, formData: FormData) => {
       status: "noice",
       payload: "nothing",
     };
-    
   } catch (error) {
     console.log("Errror creating a user", error);
 
@@ -293,5 +291,59 @@ export const handleUserUpdate = async (userInput: FormData) => {
     await dbConnect();
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const handleUserAddressUpdate = async (userInput: FormData) => {
+  const data = Object.fromEntries(userInput);
+  const user = await getSession();
+
+  try {
+    console.log("updating user address");
+
+    await dbConnect();
+
+    const update = await User.findByIdAndUpdate(
+      user.userId,
+      {
+        address: data.address,
+        city: data.city,
+        state: data.state,
+      },
+      { new: true }
+    )
+      .lean()
+      .select("-password");
+
+    return {
+      status: "success",
+      payload: update,
+    };
+  } catch (error) {
+    console.log("error updaitng the user address");
+    return {
+      status: "error",
+      payload: error,
+    };
+  }
+};
+
+export const getUserInfo = async (userId: string) => {
+  console.log("geting usering infor from server");
+  try {
+    await dbConnect();
+
+    const user = await User.findById(userId).lean().select("-password");
+
+    return {
+      status: "success",
+      payload: user,
+    };
+  } catch (error) {
+    console.log("error seeming issuea arriseing");
+    return {
+      status: "error",
+      payload: error,
+    };
   }
 };

@@ -16,14 +16,11 @@ const LoginForm = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const username = await formData.get("username");
+
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
 
-    // a
-
-    // c -
     const sendMessage = `Hi, welcome`;
     const sign = await signer.signMessage(sendMessage);
 

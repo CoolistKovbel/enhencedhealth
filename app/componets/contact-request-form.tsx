@@ -4,27 +4,33 @@ import React from "react";
 import { MakeARequest } from "../lib/action";
 
 const ContactRequestForm = () => {
+
   const handleRequest = async (e: any) => {
     e.preventDefault();
 
     try {
       console.log("hjandling request");
-
+      
+      const form = e.target as HTMLFormElement;
       const formData = new FormData(e.currentTarget);
+
+      const minPae = formData.get("minpay")
+
+      console.log(minPae, ":de min pay")
 
       const gg = await MakeARequest(formData);
 
-      console.log(gg)
-
       // Reest form after
+      form.reset()
     } catch (error) {
       console.log("error");
-    }
+    } 
   };
 
   return (
     <section className="p-10">
-      <h2 className="text-2xl">Thanks for choosing us we are here to help</h2>
+
+      <h2 className="text-2xl text-center">Thanks for choosing us we are here to help</h2>
 
       <form className="p-5 flex flex-col gap-4" onSubmit={handleRequest}>
         <label className="bg-[#222] p-3 flex  text-center justify-between">
@@ -33,7 +39,7 @@ const ContactRequestForm = () => {
             type="email"
             name="email"
             id="email"
-            placeholder="enter a name"
+            placeholder="enter a email"
             className="p-2 bg-[#111]"
           />
         </label>
@@ -71,6 +77,7 @@ const ContactRequestForm = () => {
 
         <button className="bg-[#222] p-2 hover:bg-[#333]">submit</button>
       </form>
+
     </section>
   );
 };

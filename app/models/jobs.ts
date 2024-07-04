@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import { User } from "./User";
 
 export interface IJob {
-  views?: number;
   author?: any;
   title?: string;
   description?: string;
@@ -10,6 +9,8 @@ export interface IJob {
   accepted?: boolean;
   completed?: boolean;
   worker?: string;
+  startTime?: string;
+  endTime?: string; 
 }
 
 const JobSchema = new mongoose.Schema<IJob>(
@@ -32,16 +33,18 @@ const JobSchema = new mongoose.Schema<IJob>(
       default: false
     },
     worker: {
-      type: String,
-      
+      type: mongoose.Schema.Types.ObjectId,
+      ref: User, 
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: User, // Replace 'User' with the actual name of your User model
+      ref: User, 
     },
-    views: {
-      type: Number,
-      default: 0,
+    startTime: {
+      type: String,
+    },
+    endTime: {
+      type: String,
     },
   },
   { timestamps: true }

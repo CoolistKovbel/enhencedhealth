@@ -14,7 +14,8 @@ const Page = async () => {
 
   const jobRequests = await Job.find({}).lean();
 
-  console.log(jobRequests);
+  const userJob = jobRequests.filter((item:any) => item.worker === user.userId);
+
 
   return (
     <main className="min-h-screen flex-col items-center gap-4 p-5">
@@ -55,7 +56,7 @@ const Page = async () => {
           <h2 className="text-2xl font-bold">Recent Jobs:</h2>
 
           <div className="flex flex-col gap-4">
-            {jobRequests.map((item) => (
+            {userJob.map((item) => (
               <div
                 key={crypto.randomUUID()}
                 className="bg-[#222] p-4 rounded-lg  "
@@ -79,6 +80,7 @@ const Page = async () => {
               </div>
             ))}
           </div>
+          
         </div>
       </section>
     </main>

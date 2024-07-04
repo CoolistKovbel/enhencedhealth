@@ -2,23 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ServiceFeatures = () => {
+
   const data = [
     {
-      title: "Trying to install a tv mount",
+      title: "Trying to install something",
       description:
-        "Having trouble putting up a tv and dont want to put it on its default position. Let us provide you with the best quaility service we can offer.",
+        "Need an extra hand to install a certain product or equiment and dont know how to call or ask for help, we got you covered. We have a exeperts ready to assist.",
       image: "/tvMounting.webp",
     },
     {
-      title: "Boiler acting weird? Makes sounds.",
+      title: "Boiler or appliences acting weird? Makes sounds.",
       description:
-        "We can have a look at it for you and we will be able to get it done same day",
+        "Need someone to have a look at the appliences that you use every day, we will have a look and find out the best possible solution for you to get your appliance working like brand new.",
       image: "/boilderfeature.jpg",
     },
     {
       title: " Need a fix-it-upper",
       description:
-        "We can disccuse certain ways that you may want to install some spacing within your home. ",
+        "Need someone to patch up holes or handle some outlets, work on some interior design aspect of your living space, we will be able to discuss a rough estimate and get our services running as soon as possible to get your problems fixed",
       image: "/boilderfeature.jpg",
     },
     {
@@ -31,30 +32,36 @@ const ServiceFeatures = () => {
 
   return (
     <section className="flex flex-col gap-4" id="features">
+
       {data.map((item: any, i) => (
         <article
           key={crypto.randomUUID()}
           className={` p-5 bg-[#222] drop-shadow-lg rounded-lg`}
         >
+
           {!item.image && (
-            <header className="w-full bg-[#111] p-10 flex items-center flex-col gap-4">
+            <header className="w-full bg-[#111] p-10 flex text-center flex-col gap-4">
+
               <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
               <p className="text-md">{item.description}</p>
+
               <Link
                 href={`${item.link}`}
-                className="bg-[#333] capitalize rounded-lg hover:bg-[#444] p-4 font-bold w-[20%] text-center  "
+                className="bg-[#333] capitalize rounded-lg hover:bg-[#444] p-4 font-bold w-full md:w-[20%] text-center  "
               >
                 get a quote
               </Link>
             </header>
           )}
 
+
           {item.image && (
             <div
-              className={`md:w-[100%] bg-[#111] p-10 flex  gap-10 justify-between  ${
-                i % 2 !== 0 ? "flex-row-reverse" : "flex-row"
+              className={`md:w-[100%] bg-[#111] p-10 flex gap-10 flex-col md:flex-row  ${
+                i % 2 !== 0 ? " md:flex-row-reverse flex-row-reverse" : "flex-row"
               }`}
             >
+
               <header className="flex flex-col gap-4 mb-4 md:mb-0 w-full justify-center">
                 <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
 
@@ -68,14 +75,13 @@ const ServiceFeatures = () => {
                   fill
                 />
               </div>
+
             </div>
           )}
 
-          {/* {item?.link && (
-            
-          )} */}
         </article>
       ))}
+
     </section>
   );
 };

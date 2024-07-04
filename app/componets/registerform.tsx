@@ -28,8 +28,6 @@ export const RegisterForm = () => {
 
     try {
       dispatch(formData);
-
-      console.log(state);
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -46,6 +44,8 @@ export const RegisterForm = () => {
       onSubmit={handleSubmit}
       className="w-[800px] h-[full] backdrop-filter backdrop-blur-lg bg-gray-800 bg-opacity-80 text-center shadow-xl border-[12px] relative"
     >
+
+
       {/* Form title */}
       <h2 className="text-2xl md:text-6xl font-bold capitalize p-4 w-full ">
         Register
@@ -136,6 +136,9 @@ export const RegisterForm = () => {
           </Link>
         </div>
       </div>
+
+
+
     </form>
   );
 };

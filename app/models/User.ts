@@ -10,6 +10,9 @@ export interface IUser {
   metaAddress: string;
   sig: string;
   earned: string;
+  address: string,
+  city: string,
+  state: string
 }
 
 // TODO: Make it better......
@@ -49,6 +52,15 @@ const UserSchema = new mongoose.Schema<IUser>(
       type: Boolean,
       default: false,
     },
+    address: {
+      type: String
+    },
+    city: {
+      type: String
+    },
+    state: {
+      type: String
+    }
   },
   { timestamps: true }
 );
