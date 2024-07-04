@@ -4,13 +4,12 @@ export interface IUser {
   username: string;
   email: string;
   password: string;
-  preference: string;
   image: string;
   role: string;
   isPro: boolean;
   metaAddress: string;
   sig: string;
-  earned: number | string;
+  earned: string;
 }
 
 // TODO: Make it better......
@@ -21,33 +20,25 @@ const UserSchema = new mongoose.Schema<IUser>(
       type: String,
       min: 4,
       max: 24,
-      require: true,
     },
     email: {
       type: String,
-      require: true,
     },
     password: {
       type: String,
-      require: true,
-    },
-    preference: {
-      type: String,
-      require: true,
     },
     image: {
       type: String,
     },
     metaAddress: {
-      type: String || null,
+      type: String,
     },
     sig: {
-      type: String || null,
-      unique: true,
+      type: String,
     },
     earned: {
-      type: String || Number,
-      default: 0
+      type: String,
+      default: "0",
     },
     role: {
       type: String,

@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
 import { useFormState } from "react-dom";
-
 import { useEffect } from "react";
 import { Registrar } from "@/app/lib/action";
 import { ethers } from "ethers";
@@ -14,26 +12,33 @@ export const RegisterForm = () => {
 
   const [state, dispatch] = useFormState(Registrar, undefined);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+
+    const form = e.target as HTMLFormElement;
     const sendMessage = `Hi, welcome`;
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const sign = await signer.signMessage(sendMessage);
-
+    
     formData.append("sig", sign);
 
     try {
       dispatch(formData);
+
+      console.log(state);
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      form.reset();
     }
   };
 
   useEffect(() => {
-    if (state?.startsWith("noice")) router.push("/login");
+    if (state?.status === "noice") router.push("/login");
   }, [state, router]);
 
   return (

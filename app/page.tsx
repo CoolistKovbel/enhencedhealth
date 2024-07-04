@@ -1,60 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
+import ServiceFeatures from "./componets/features/serviceFeatures";
 
 export default function Home() {
-  const data = [
-    {
-      title: "Trying to install a tv mount",
-      description:
-        "Having trouble putting up a tv and dont want to put it on its default position. Let us provide you with the best quaility service we can offer.",
-      image: "/tvMounting.webp",
-    },
-    {
-      title: "Boiler acting weird? Makes sounds.",
-      description:
-        "We can have a look at it for you and we will be able to get it done same day",
-      image: "/boilderfeature.jpg",
-    },
-    {
-      title: " Need a fix-it-upper",
-      description:
-        "We can disccuse certain ways that you may want to install some spacing within your home. ",
-      image: "/boilderfeature.jpg",
-    },
-    {
-      title: " What ever the problem we will help to find a solution ",
-      description:
-        " We are here to help you with any help you may need inside your home. We are here to be able to make your life easier.",
-      link: "/quote",
-    },
-  ];
-
   return (
     <main className="flex min-h-screen flex-col items-center gap-4 p-5">
-
       <div className="w-full h-[700px] flex items-center gap-4 flex-col justify-around md:flex-row bg-[#666] relative">
-
-        <div className="flex flex-col gap-2 justify-between items-center bg-[#444] md:w-[50%] p-4 rounded-lg h-[300px] z-50">
-
+        <div className="flex flex-col gap-2 justify-between items-center bg-[#444] md:w-[50%] p-4 rounded-lg h-fit md:h-[300px] z-50">
           <header className="flex items-center justify-center flex-col bg-[#000] p-3 rounded-lg drop-shadow-lg">
-            
             <header className="w-full flex items-center justify-center flex-col drop-shadow-lg rounded-lg">
-
               <h1 className="text-3xl font-bold  mb-1 capitalize text-center">
                 Need a service to get you through the hardest problems
               </h1>
 
-              <h3 className="text-xl font-bold mb-2  mt-2  text-center p-2 capitalize inline-block bg-[#333] rounded-lg">
+              <h3 className="text-xl font-bold mb-2  mt-2  text-center p-2 capitalize inline-block underline rounded-lg">
                 We Got you covered
               </h3>
-
             </header>
 
             <p className="text-md text-gray-500 text-center">
               Contact us for a quote today and we will be able to go over and
               provide service for your probelm.
             </p>
-
           </header>
 
           <Link
@@ -63,62 +30,19 @@ export default function Home() {
           >
             Contact for a quote
           </Link>
-
         </div>
 
-        <Image src="/kms.JPG" alt="what is life" className="absolute top-0 right-0 left-0 bottom-0 z-40 blur-sm" fill />
-
+        <Image
+          src="/kms.JPG"
+          alt="what is life"
+          className="absolute top-0 right-0 left-0 bottom-0 z-40 blur-sm drop-shadow-lg rounded"
+          fill
+        />
       </div>
 
-      <section className="flex flex-col gap-4" id="features">
-        {data.map((item: any, i) => (
-          <article
-            key={crypto.randomUUID()}
-            className={`flex items-center justify-between flex-col   gap-4 p-5 bg-[#222] drop-shadow-lg rounded-lg ${
-              i % 2 !== 0 ? "bg-[#999] flex-row-reverse" : "flex-row"
-            }`}
-          >
-            {!item.image && (
-              <header className="w-full bg-[#111] p-10">
-                <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
-                <p className="text-md">{item.description}</p>
-              </header>
-            )}
-
-            {item.image && (
-              <div className="md:w-[100%] bg-[#111] p-10 flex md:flex-row justify-between justify-center flex-col">
-                <header className="flex flex-col gap-4 mb-4 md:mb-0 w-full">
-                  <h2 className="text-3xl font-bold capitalize">
-                    {item.title}
-                  </h2>
-
-                  <p className="text-md">{item.description}</p>
-                </header>
-
-                <div className="w-[300px] h-[300px] relative mx-auto">
-                  <Image
-                    src={item.image}
-                    alt="feature of createing a profile"
-                    fill
-                  />
-                </div>
-              </div>
-            )}
-
-            {item?.link && (
-              <Link
-                href={`${item.link}`}
-                className="bg-[#333] capitalize rounded-lg hover:bg-[#444] p-2 font-bold"
-              >
-                get a quote
-              </Link>
-            )}
-          </article>
-        ))}
-      </section>
+      <ServiceFeatures />
 
       <div className="bg-[#333] p-4">
-
         <header className="mb-4 p-4">
           <h2 className="text-5xl font-bold mb-2">Contact US</h2>
           <p className="text-gray-200 text-md">
@@ -177,7 +101,6 @@ export default function Home() {
             slack
           </Link>
         </div>
-
       </div>
 
       <div
@@ -205,7 +128,6 @@ export default function Home() {
           </button>
         </form>
       </div>
-
     </main>
   );
 }

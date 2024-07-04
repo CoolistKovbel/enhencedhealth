@@ -27,19 +27,18 @@ export const getSession = async () => {
   return session;
 };
 
-export const MintUserHealthPack = async (amount:any) => {
+export const MintUserHealthPack = async (amount: any) => {
   try {
-    console.log("result of the amount.........", amount)
-    
-    const gg = await mintNFT(amount)
+    console.log("result of the amount.........", amount);
 
-    return gg
+    const gg = await mintNFT(amount);
 
+    return gg;
   } catch (error) {
-    console.log("error")
-    console.log(error)
+    console.log("error");
+    console.log(error);
   }
-}
+};
 
 // Form actions
 export const login = async (
@@ -197,8 +196,8 @@ export const AcceptSingleJob = async (jobId: string) => {
 
 // handle message between user and worker
 export const handleUserMessage = async (formData: FormData) => {
-  const user = await getSession()
-  
+  const user = await getSession();
+
   const { title, message, sessoinUrl, address } = Object.fromEntries(formData);
 
   try {
@@ -227,45 +226,51 @@ export const handleUserMessage = async (formData: FormData) => {
 };
 
 // handle user register
-export const Registrar = async (
-  state: string | undefined,
-  formData: FormData
-) => {
-  try {
-    const { username, email, password, metaAddress, sig } =
-      Object.fromEntries(formData);
+export const Registrar = async (state: any, formData: FormData) => {
+  const data = Object.fromEntries(formData);
 
+  try {
     await dbConnect();
 
-    const UsrExist = await User.findOne({ username });
+    console.log("Trying to register a user", data);
 
-    if (UsrExist) {
-      return "there is a user";
-    }
-
-    console.log(username)
-
-    const P$P = await hash(password as string, 10);
-
-    const newUser = new User({
-      username: username,
-      password: P$P,
-      email,
-      metaAddress: metaAddress as string | undefined,
-      sig,
+    const userExists = await User.find({
+      metaAddress: data.metaAddress as string,
     });
 
-    await newUser.save();
+    if (userExists.length > 0) {
+      return {
+        status: "noice",
+        payload: userExists,
+      };
+    }
 
-    return "noice";
+    const hashPass = await hash(data.password as string, 10);
+
+    const createNewUser = new User({
+      username: data.username,
+      email: data.email,
+      password: hashPass,
+      metaAddress: data.metaAddress,
+      sig: data.sig,
+    });
+
+    await createNewUser.save();
+
+    return {
+      status: "noice",
+      payload: "nothing",
+    };
+    
   } catch (error) {
-    console.log(error);
+    console.log("Errror creating a user", error);
 
-    return "notnoice";
+    return {
+      status: "notnoice",
+      payload: error,
+    };
   }
 };
-
-
 
 // Handle user new job request
 export const handleNewJobRequest = async (userInput: FormData) => {
