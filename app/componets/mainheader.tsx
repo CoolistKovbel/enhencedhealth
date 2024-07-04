@@ -12,20 +12,20 @@ const MainHeader = async () => {
 
   return (
     <header className="flex items-center justify-between w-full bg-[#222] p-4 ">
-      <h2 className="p-2 fomt-bold ">
+
+      <h2 className="p-2 fomt-bold w-[20%]">
         <Link
           href="/"
-          className="flex items-center flex-row-reverse gap-4 font-bold"
+          className="flex items-center flex-row-reverse"
         >
-          Ejurwonder Home Service 
-          {/* <Image src="/logo.png" alt=";ogsngs" width={80} height={80} /> */}
+          Ejurwonder Service
+          <Image src="/EIS3.png" alt=";ogsngs" width={80} height={80} />
         </Link>
       </h2>
 
-      <nav className="flex items-center justify-between w-[60%] bg-[#111] p-4 rounded-lg">
-
+      <nav className="flex items-center justify-between w-[30%] bg-[#111] p-4 rounded-lg ">
         {isLogged ? (
-          <div className="w-[50%] flex items-center gap-4">
+          <div className="w-[50%] flex items-center gap-4 justify-between">
             <Link
               href="/request"
               className="bg-[#333] p-3 rounded-lg hover:bg-[#222]"
@@ -42,20 +42,20 @@ const MainHeader = async () => {
             <UserHeaderDropdownmenu />
           </div>
         ) : (
-          <div className="w-[50%] flex items-center gap-4">
-            <Link href="/quote">Get a quote</Link>
-            <Link href="/mint">Mint</Link>
+          <div className="w-[50%] flex items-center  gap-2">
+            <Link href="/quote" className="p-2 bg-[green] rounded-lg dropshadow-lg font-bold hover:bg-[#222]">Get a quote</Link>
+            <Link href="/mint" className="p-2 bg-[firebrick] rounded-lg dropshadow-lg font-bold hover:bg-[#222]">Mint</Link>
           </div>
         )}
 
         {!isLogged && (
-          <div className="w-[50%] flex items-center justify-around">
+          <div className="w-[30%] flex items-center justify-around">
             <Link href="/login">Login</Link>
             <Link href="/register">Register</Link>
           </div>
         )}
-
       </nav>
+
     </header>
   );
 };

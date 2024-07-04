@@ -22,12 +22,10 @@ const UserSchema = new mongoose.Schema<IUser>(
       min: 4,
       max: 24,
       require: true,
-      unique: true,
     },
     email: {
       type: String,
       require: true,
-      unique: true,
     },
     password: {
       type: String,

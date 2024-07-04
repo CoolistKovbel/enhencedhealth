@@ -6,9 +6,9 @@ import MainFooter from "./componets/mainfooter";
 import { ModalProvider } from "./componets/providers/model-provider";
 
 export const metadata: Metadata = {
-  title: "EEjurwonder Home Service ",
+  title: "Ejurwonder Service ",
   description:
-    "Welcome to Ejurwonder Home Service  , a service in which we can help you with your kitchken, bed, and bathroom coridors, or even help install applicences, bringong you a happy home without the too much of the hassle. Afforable allowing you to use crypto as our #1 paymant source",
+    "Welcome to Ejurwonder Service  , a service in which we can help you with your kitchken, bed, and bathroom coridors, or even help install applicences, bringong you a happy home without the too much of the hassle. Afforable allowing you to use crypto as our #1 paymant source",
 };
 
 export default function RootLayout({

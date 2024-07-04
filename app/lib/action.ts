@@ -41,7 +41,6 @@ export const MintUserHealthPack = async (amount:any) => {
   }
 }
 
-
 // Form actions
 export const login = async (
   prevState: undefined | string,
@@ -244,10 +243,12 @@ export const Registrar = async (
       return "there is a user";
     }
 
+    console.log(username)
+
     const P$P = await hash(password as string, 10);
 
     const newUser = new User({
-      username,
+      username: username,
       password: P$P,
       email,
       metaAddress: metaAddress as string | undefined,
@@ -263,6 +264,8 @@ export const Registrar = async (
     return "notnoice";
   }
 };
+
+
 
 // Handle user new job request
 export const handleNewJobRequest = async (userInput: FormData) => {
