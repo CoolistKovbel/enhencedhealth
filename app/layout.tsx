@@ -5,6 +5,9 @@ import "./globals.css";
 import MainFooter from "./componets/mainfooter";
 import { ModalProvider } from "./componets/providers/model-provider";
 
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const metadata: Metadata = {
   title: "Ejurwonder Service ",
   description:
@@ -22,6 +25,7 @@ export default function RootLayout({
         <MainHeader />
         {children}
         <MainFooter />
+        <ToastContainer />
         <ModalProvider />
       </body>
     </html>

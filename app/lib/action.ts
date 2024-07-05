@@ -13,6 +13,7 @@ import { Job } from "../models/jobs";
 import { revalidatePath } from "next/cache";
 import { Message } from "../models/Message";
 import { mintNFT } from "./web3";
+import { WaitList } from "../models/WaitList";
 
 const sendMessage = `Hi, welcome to hell`;
 
@@ -112,7 +113,7 @@ export async function ContactEmail(
     await sendMail({
       to: process.env.SMTP_EMAIL as string,
       name: data.email as string,
-      subject: data.subject as string,
+      subject: data.subject as string || "URGENT NOTICE",
       content: content.concat(` Message situated from ${data.email} `),
     });
 
@@ -343,6 +344,32 @@ export const getUserInfo = async (userId: string) => {
     console.log("error seeming issuea arriseing");
     return {
       status: "error",
+      payload: error,
+    };
+  }
+};
+
+// handle user news letter sign up
+export const handleNewsLetterSignUp = async (email: any) => {
+  try {
+    console.log("handleNews letts uper");
+
+    await dbConnect();
+
+    const newWaiting = new WaitList({
+      email: email,
+    });
+
+    await newWaiting.save();
+
+    return {
+      status: "success",
+      payload: newWaiting,
+    };
+  } catch (error) {
+    console.log("Error habnd news leter", error);
+    return {
+      status: "Error",
       payload: error,
     };
   }
