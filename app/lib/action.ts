@@ -14,8 +14,22 @@ import { revalidatePath } from "next/cache";
 import { Message } from "../models/Message";
 import { mintNFT } from "./web3";
 import { WaitList } from "../models/WaitList";
+import { writeFile } from "fs/promises";
 
 const sendMessage = `Hi, welcome to hell`;
+
+const hadleImageUpload = async (image: any) => {
+  const fileBuffer = await (image as File).arrayBuffer();
+  const buffer = Buffer.from(fileBuffer);
+
+  const path = `${process.cwd()}/public/userImage/${
+    crypto.randomUUID() + image.name
+  }`;
+
+  await writeFile(path, buffer);
+
+  return path.split(`${process.cwd()}/public`)[1];
+};
 
 // token and session actions
 export const getSession = async () => {
@@ -109,16 +123,24 @@ export async function ContactEmail(
   const data = Object.fromEntries(formData.entries());
   const content = data.content as string;
 
+  const payload = {
+    email: data.email,
+    clientName: data.clientName,
+    clientNumber: data.clientNumber,
+  };
+
   try {
     await sendMail({
       to: process.env.SMTP_EMAIL as string,
       name: data.email as string,
-      subject: data.subject as string || "URGENT NOTICE",
-      content: content.concat(` Message situated from ${data.email} `),
+      subject: (data.subject as string) || "URGENT NOTICE",
+      content: content.concat(
+        ` Message situated from ${JSON.stringify(payload)} `
+      ),
     });
 
     return {
-      message: `${data.email} your message has been sent, if you cant wait... call`,
+      message: `${data.email} your message has been sent, please allow us a few hours to be able to contact you back be ssure to check your spam and if you have any concern give us a call`,
     };
   } catch (error) {
     console.log(error);
@@ -240,7 +262,7 @@ export const Registrar = async (state: any, formData: FormData) => {
 
     if (userExists.length > 0) {
       return {
-        status: "noice",
+        status: "notnoice",
         payload: userExists,
       };
     }
@@ -283,15 +305,54 @@ export const handleNewJobRequest = async (userInput: FormData) => {
 };
 
 export const handleUserUpdate = async (userInput: FormData) => {
-  const { username, email, password, metaAddress } =
+  const user = await getSession();
+
+  const { username, email, password, metaAddress, imageFile } =
     Object.fromEntries(userInput);
 
   try {
     console.log("handling new jobn");
-
     await dbConnect();
+
+    const serverUser = await User.findById(user.userId).lean();
+    const userImage = await hadleImageUpload(imageFile as File);
+
+    // Take a loook at combination
+
+    const passwordz = await hash(password as string, 10);
+
+    const payloadSession: any = {
+      username: username || user.username,
+      email: email || user.email,
+      metaAccount: metaAddress || user.metaAccount,
+      image: userImage || user?.image,
+    };
+
+    Object.assign(user, payloadSession);
+
+    const payloadServer: any = {
+      username: username || user.username,
+      email: email || user.email,
+      password: passwordz || serverUser?.password,
+      metaAddress: metaAddress || serverUser?.metaAddress,
+      image: userImage || serverUser?.image,
+    };
+
+    const gg = await User.findByIdAndUpdate(user.userId, payloadServer);
+
+    await gg?.save();
+    await user.save();
+
+    return {
+      status: "success",
+      payload: gg,
+    };
   } catch (error) {
     console.log(error);
+    return {
+      status: "error",
+      payload: error,
+    };
   }
 };
 

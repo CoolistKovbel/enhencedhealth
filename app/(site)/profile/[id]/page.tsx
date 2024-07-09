@@ -1,5 +1,6 @@
 import { getUserInfo } from "@/app/lib/action";
 import { Job } from "@/app/models/jobs";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -15,16 +16,22 @@ const Page = async (props: any) => {
   return (
     <main className="w-full min-h-screen bg-[#222]">
 
-      <header className="w-full p-4 flex items-center justify-between flex-col md:flex-row">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold mb-3">
-            {userFromServer.payload.username}
-          </h2>
-          <p className="bg-[#444] p-2 drop-shadow-lg rounded">
-            {userFromServer.payload.metaAddress}
-          </p>
+      <header className="w-full p-4 ">
+        <div className="w-[80%] mx-auto flex items-center justify-between flex-col md:flex-row">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold mb-3">
+              {userFromServer.payload.username}
+            </h2>
+            <p className="bg-[#444] p-2 drop-shadow-lg rounded">
+              {userFromServer.payload.metaAddress}
+            </p>
+          </div>
+
+          <div className="w-[300px] h-[300px] bg-[#444] relative drop-shadow-lg">
+            <Image src={`/${userFromServer.payload.image}`} alt={userFromServer.payload.username} fill />
+          </div>
         </div>
-        <div className="w-[300px] h-[300px] bg-[#444] relative drop-shadow-lg"></div>
+
       </header>
 
       <section className="p-10 flex items-center justify-between bg-[#444]">

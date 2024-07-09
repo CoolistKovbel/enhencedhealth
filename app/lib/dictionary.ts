@@ -9,6 +9,7 @@ export interface SessionData {
   metaAccount?: string;
   role?: string;
   email?: string;
+  signature?: string;
 }
 
 export const defaultSession: SessionData = {

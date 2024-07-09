@@ -1,24 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import LogoutButton from "./logoutbutton";
-import { getSession } from "../lib/action";
+
 import Image from "next/image";
 import UserHeaderDropdownmenu from "./userHeaderDropdownmenu";
 
-const MainHeader = () => {
-  const [userr, setUserr] = useState<any>();
+interface MainHeaderProps {
+  userr: any;
+}
 
-  useEffect(() => {
-    const gg = async () => {
-      const user = await getSession();
-      setUserr(user);
-    };
-
-    gg();
-  }, []);
-
+const MainHeader = ({ userr }: MainHeaderProps) => {
   const isLogged = userr?.isLoggedIn;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -65,6 +58,22 @@ const MainHeader = () => {
       >
         {isLogged ? (
           <div className="flex flex-col md:flex-row md:items-center md:gap-4">
+            {userr.role === "USER" ? (
+              <Link
+                href="/freelanceForm"
+                className="p-2 bg-[#222] text-sm hover:bg-[#444] font-bold"
+              >
+                want to freelance with us?
+              </Link>
+            ) : (
+              <Link
+                href="/job/123"
+                className="p-2 bg-[#222] text-sm hover:bg-[#444] font-bold"
+              >
+                Recent Job
+              </Link>
+            )}
+
             <Link
               href="/request"
               className="bg-[#333] p-3 rounded-lg hover:bg-[#222] mb-2 md:mb-0"

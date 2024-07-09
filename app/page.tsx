@@ -7,6 +7,7 @@ import QuoteContact from "./componets/features/contact-quote";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center gap-4 p-5">
+      
       <div className="w-full h-[700px] flex items-center gap-4 flex-col justify-around md:flex-row bg-[#666] relative">
         <div className="flex flex-col gap-2 justify-between items-center bg-[#444] md:w-[50%] p-4 rounded-lg h-fit md:h-[300px] z-50">
           <header className="flex items-center justify-center flex-col bg-[#000] p-3 rounded-lg drop-shadow-lg">

@@ -1,7 +1,14 @@
 import ContactUpdateForm from "@/app/componets/contact-update-form";
 import ProfileAddress from "@/app/componets/settings/profile-address";
+import { getSession } from "@/app/lib/action";
 
-const page = () => {
+const page = async () => {
+
+  const user = await getSession()
+
+  console.log(user)
+
+
   return (
     <main className="w-full min-h-screen">
       <header className="p-3 bg-[#444]">

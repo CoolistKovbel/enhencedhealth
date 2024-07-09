@@ -11,6 +11,8 @@ export interface IJob {
   worker?: string;
   startTime?: string;
   endTime?: string; 
+  signatureOfCompletion?: string;
+
 }
 
 const JobSchema = new mongoose.Schema<IJob>(
@@ -44,6 +46,9 @@ const JobSchema = new mongoose.Schema<IJob>(
       type: String,
     },
     endTime: {
+      type: String,
+    },
+    signatureOfCompletion: {
       type: String,
     },
   },

@@ -1,6 +1,12 @@
 import ContactRequestForm from "@/app/componets/contact-request-form";
+import { getSession } from "@/app/lib/action";
 
-const Page = () => {
+const Page = async () => {
+
+    const user = await getSession()
+
+
+
   return (
     <main className="w-full min-h-screen">
 
@@ -11,7 +17,7 @@ const Page = () => {
         </p>
       </header>
 
-      <ContactRequestForm />
+      <ContactRequestForm user={user} />
       
     </main>
   );

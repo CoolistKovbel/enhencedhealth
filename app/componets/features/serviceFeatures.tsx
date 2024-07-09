@@ -20,7 +20,7 @@ const ServiceFeatures = () => {
       title: " Need a fix-it-upper",
       description:
         "Need someone to patch up holes or handle some outlets, work on some interior design aspect of your living space, we will be able to discuss a rough estimate and get our services running as soon as possible to get your problems fixed",
-      image: "/boilderfeature.jpg",
+      image: "/fixeruper.jpeg",
     },
     {
       title: " What ever the problem we will help to find a solution ",
@@ -57,12 +57,12 @@ const ServiceFeatures = () => {
 
           {item.image && (
             <div
-              className={`md:w-[100%] bg-[#111] p-10 flex gap-10 flex-col md:flex-row  ${
+              className={`md:w-[80%] mx-auto drop-shadow-lg rounded-lg bg-[#111] p-10 flex gap-10 flex-col md:flex-row  ${
                 i % 2 !== 0 ? " md:flex-row-reverse flex-row-reverse" : "flex-row"
               }`}
             >
 
-              <header className="flex flex-col gap-4 mb-4 md:mb-0 w-full justify-center">
+              <header className="flex flex-col gap-4 mb-4 md:mb-0 w-full justify-center w-[40%]">
                 <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
 
                 <p className="text-md">{item.description}</p>

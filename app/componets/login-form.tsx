@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { login } from "@/app/lib/action";
 import { ethers } from "ethers";
 
 const LoginForm = () => {
   const router = useRouter();
+  const [user, setUser] = useState<string>("")
 
   const [state, dispatch] = useFormState(login, undefined);
 
@@ -35,6 +36,18 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (state?.startsWith("noice")) router.push("/profile");
+
+    const userAddress = async () => {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+  
+      const userAddress = await signer.getAddress()
+      setUser(userAddress)
+    }
+
+    userAddress()
+
+
   }, [state, router]);
 
   return (
@@ -91,6 +104,8 @@ const LoginForm = () => {
               type="text"
               name="metAddress"
               id="metaAddress"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
               className="w-full text-[14px] backdrop-filter backdrop-blur-lg bg-gray-300 bg-opacity-50 rounded-lg p-6 "
             />
           </label>

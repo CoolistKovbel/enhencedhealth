@@ -46,7 +46,7 @@ const UserSchema = new mongoose.Schema<IUser>(
     role: {
       type: String,
       default: "USER",
-      enum: ["USER", "ADMIN", "CAPTAIN"],
+      enum: ["USER", "LANCER", "CAPTAIN"],
     },
     isPro: {
       type: Boolean,

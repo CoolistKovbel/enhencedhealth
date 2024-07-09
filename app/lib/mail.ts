@@ -35,6 +35,7 @@ export async function sendMail({ to, name, subject, content }: SendMailProps) {
       to,
       subject,
       html: content,
+      
     });
 
     console.log(result);

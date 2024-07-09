@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react";
 import { handleUserUpdate } from "../lib/action";
 
 const ContactUpdateForm = () => {
@@ -11,13 +10,18 @@ const ContactUpdateForm = () => {
 
         try {
             console.log("hande submit")
+
             const formData = new FormData(e.currentTarget)
-
-
+            const form = e.target as HTMLFormElement
+           
             const gg =  await handleUserUpdate(formData)
 
+
+            gg.status === "success" ? form.reset() : null
+
+
             console.log(gg)
-            
+
         } catch (error) {
             console.log(error)
         }

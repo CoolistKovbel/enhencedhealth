@@ -8,7 +8,7 @@ import React from "react";
 const Page = async () => {
   const user = await getSession();
 
-  const isDev = user.role === "DEV";
+  const isDev = user.role === "LANCER";
 
   const serverUser = await getCurrenbyUserId(user.userId as string);
 
@@ -19,6 +19,7 @@ const Page = async () => {
 
   return (
     <main className="min-h-screen flex-col items-center gap-4 p-5">
+
       <header className="p-10 bg-[#222] flex items-center justify-between">
         <h2 className="text-2xl">PRofile</h2>
 
@@ -30,7 +31,7 @@ const Page = async () => {
       <section>
         <header className="flex items-center justify-around p-10">
           <div className="w-[300px] h-[300px] relative">
-            <Image src="https://picsum.photos/200" alt="eh" fill />
+            <Image src={`/${user.image}`} alt="eh" fill />
           </div>
           <div className="flex flex-col">
             <h2 className="text-2xl">Role: {serverUser?.role}</h2>
@@ -82,7 +83,9 @@ const Page = async () => {
           </div>
           
         </div>
+
       </section>
+
     </main>
   );
 };

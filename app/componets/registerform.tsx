@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Registrar } from "@/app/lib/action";
 import { ethers } from "ethers";
+import { toast } from "react-toastify";
 
 export const RegisterForm = () => {
+  const [user, setUser] = useState<string>("");
   const router = useRouter();
 
   const [state, dispatch] = useFormState(Registrar, undefined);
@@ -23,7 +25,7 @@ export const RegisterForm = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const sign = await signer.signMessage(sendMessage);
-    
+
     formData.append("sig", sign);
 
     try {
@@ -37,6 +39,21 @@ export const RegisterForm = () => {
 
   useEffect(() => {
     if (state?.status === "noice") router.push("/login");
+
+    if (state?.status === "notnoice")
+      toast(
+        "Im sorry but it seems like there is already an account being used by the current meta address please use another one.... "
+      );
+
+      const userAddress = async () => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+    
+        const userAddress = await signer.getAddress()
+        setUser(userAddress)
+      }
+  
+      userAddress()
   }, [state, router]);
 
   return (
@@ -44,12 +61,22 @@ export const RegisterForm = () => {
       onSubmit={handleSubmit}
       className="w-[800px] h-[full] backdrop-filter backdrop-blur-lg bg-gray-800 bg-opacity-80 text-center shadow-xl border-[12px] relative"
     >
-
-
       {/* Form title */}
-      <h2 className="text-2xl md:text-6xl font-bold capitalize p-4 w-full ">
-        Register
-      </h2>
+      <header className="flex items-center flex-col gap-2 p-4">
+        <h2 className="text-2xl md:text-6xl font-bold capitalize p-4 w-full ">
+          Register
+        </h2>
+        <p>
+          We are using a new system...please download{" "}
+          <Link
+            href="https://metamask.io/"
+            target="_blank"
+            className="underline"
+          >
+            metamask
+          </Link>
+        </p>
+      </header>
 
       <div className="flex items-center justify-center gap-4 flex-col h-[90%] ">
         <div className="w-[80%] p-10 h-[80%] bg-[#222] flex items-center justify-center gap-4 flex-col">
@@ -110,6 +137,8 @@ export const RegisterForm = () => {
               type="text"
               name="metaAddress"
               id="metaAddress"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
               className="w-full text-[14px] backdrop-filter backdrop-blur-lg bg-gray-300 bg-opacity-50 rounded-lg p-6 "
             />
           </label>
@@ -136,9 +165,6 @@ export const RegisterForm = () => {
           </Link>
         </div>
       </div>
-
-
-
     </form>
   );
 };

@@ -1,9 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MakeARequest } from "../lib/action";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-const ContactRequestForm = () => {
+interface ContactRequestFormProp {
+  user: any;
+}
+
+const ContactRequestForm = ({user}: ContactRequestFormProp) => {
+  const [userEmail, setUserEmail] = useState("")
+  const router = useRouter()
 
   const handleRequest = async (e: any) => {
     e.preventDefault();
@@ -19,6 +27,11 @@ const ContactRequestForm = () => {
       console.log(minPae, ":de min pay")
 
       const gg = await MakeARequest(formData);
+
+      if(gg === "success" ){
+        toast("Noice, hopefully someone will check out your request soon")
+        router.push("/hub")
+      }
 
       // Reest form after
       form.reset()
@@ -40,6 +53,8 @@ const ContactRequestForm = () => {
             name="email"
             id="email"
             placeholder="enter a email"
+            value={user.email}
+            onChange={(e) => setUserEmail(e.target.value)}
             className="p-2 bg-[#111]"
           />
         </label>

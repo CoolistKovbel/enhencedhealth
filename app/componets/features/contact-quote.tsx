@@ -1,27 +1,24 @@
-"use client"
+"use client";
 
 import { ContactEmail } from "@/app/lib/action";
 import Link from "next/link";
 import { toast } from "react-toastify";
 
 const QuoteContact = () => {
-  const handleQuote = async (e: any) => {
-    e.preventDefault()
 
+  const handleQuote = async (e: any) => {
+    e.preventDefault();
     console.log("handling quote");
+
     try {
       const formData = new FormData(e.currentTarget);
-      const form = e.target as HTMLFormElement
+      const form = e.target as HTMLFormElement;
 
       const emailRes = await ContactEmail(undefined, formData);
 
-      console.log(emailRes);
-
       toast(emailRes.message);
 
-
-      form.reset()
-
+      form.reset();
     } catch (error) {
       console.log("error handling qtuiote", error);
     }
@@ -30,7 +27,12 @@ const QuoteContact = () => {
   return (
     <div className="bg-[#333] p-4">
       <header className="mb-4 p-4">
-        <h2 className="text-5xl font-bold mb-2">Contact US</h2>
+
+        <div className="flex item-center justify-between p-2">
+          <h2 className="text-5xl font-bold mb-2">Contact US</h2>
+          <p className="text-xl"> Call Today: <span className="bg-[#222] p-2">(706) 901-7138</span></p>
+        </div>
+
         <p className="text-gray-200 text-md">
           Need a quote or would like to know what else we can do, how much and
           how long it will take to get your website completed for you, contact
@@ -46,6 +48,26 @@ const QuoteContact = () => {
               type="email"
               id="email"
               name="email"
+              className="p-2 bg-[#222] w-full mb-4  mt-4 rounded-lg "
+            />
+          </label>
+
+          <label htmlFor="clientName">
+            <span className="text-3xl font-bold">Name:</span>
+            <input
+              type="text"
+              id="clientName"
+              name="clientName"
+              className="p-2 bg-[#222] w-full mb-4  mt-4 rounded-lg "
+            />
+          </label>
+
+          <label htmlFor="clientNumber">
+            <span className="text-3xl font-bold">Phone:</span>
+            <input
+              type="phone"
+              id="clientNumber"
+              name="clientNumber"
               className="p-2 bg-[#222] w-full mb-4  mt-4 rounded-lg "
             />
           </label>
