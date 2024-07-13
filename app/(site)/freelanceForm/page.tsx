@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Page = () => {
+  // actin
   return (
     <main className="w-full min-h-screen p-5 bg-gray-100 flex flex-col items-center justify-center">
 
@@ -39,12 +40,12 @@ const Page = () => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="skillSet" className="mb-2 font-semibold text-gray-700">
+          <label htmlFor="skillSetPreference" className="mb-2 font-semibold text-gray-700">
             SkillSet:
           </label>
           <select
-            name="skillSet"
-            id="skillSet"
+            name="skillSetPreference"
+            id="skillSetPreference"
             className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="---">---</option>

@@ -10,9 +10,10 @@ export interface IUser {
   metaAddress: string;
   sig: string;
   earned: string;
-  address: string,
-  city: string,
+  address: string;
+  city: string;
   state: string
+  SerivceSkillPreference: string;
 }
 
 // TODO: Make it better......
@@ -59,6 +60,9 @@ const UserSchema = new mongoose.Schema<IUser>(
       type: String
     },
     state: {
+      type: String
+    },
+    SerivceSkillPreference: {
       type: String
     }
   },
