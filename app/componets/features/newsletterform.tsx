@@ -35,27 +35,30 @@ const NewsLetterForm = () => {
       id="contact"
     >
       <form
-        className="flex gap-4 w-full md:w-[60%] justify-around bg-[#444] p-8 rounded-lg"
+        className="flex gap-4 w-full md:w-[60%] justify-around bg-[#222] p-8 rounded-lg"
         onSubmit={handleSubmit}
       >
+
         <header className="flex flex-col gap-4 w-[100%] ">
           <h2 className="text-2xl font-bold mb-2 uppercase text-center">
             Get updates
           </h2>
+
           <label htmlFor="updateEmail" className="w-full">
             <input
               type="email"
               id="updateEmail"
               placeholder="enter email"
               name="updateEmail"
-              className="bg-[#222] p-3 bg-[#222] w-[95%] rounded-lg"
+              className="bg-[#333] p-3 bg-[#222] w-[95%] rounded-lg"
             />
           </label>
         </header>
 
-        <button className="bg-[#222] p-2 hover:bg-[#111] rounded-lg w-[20%]">
+        <button className="bg-[#333] p-2 hover:bg-[#111] rounded-lg w-[20%]">
           update Email
         </button>
+
       </form>
     </div>
   );

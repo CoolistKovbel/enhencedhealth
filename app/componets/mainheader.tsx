@@ -22,6 +22,7 @@ const MainHeader = ({ userr }: MainHeaderProps) => {
 
   return (
     <header className="flex items-center justify-between w-full bg-[#222] p-4 relative">
+    
       <h2 className="p-2 font-bold">
         <Link href="/" className="flex items-center flex-row-reverse">
           Ejurwonder Service
@@ -54,8 +55,9 @@ const MainHeader = ({ userr }: MainHeaderProps) => {
       <nav
         className={`${
           isMobileMenuOpen ? "block absolute" : "hidden"
-        } md:flex items-center justify-between w-[80%] md:w-auto bg-[#111] top-[80px] right-5 md:bg-[#666] p-4  rounded-lg z-[60]`}
+        } md:flex items-center justify-between w-[80%] md:w-[40%] bg-[#666] top-[80px] right-5 md:bg-[#666] p-4  rounded-lg z-[60]`}
       >
+
         {isLogged ? (
           <div className="flex flex-col md:flex-row md:items-center md:gap-4">
             {userr.role === "USER" ? (
@@ -106,7 +108,7 @@ const MainHeader = ({ userr }: MainHeaderProps) => {
         )}
 
         {!isLogged && (
-          <div className="flex flex-col md:flex-row md:items-center md:gap-2">
+          <div className="flex flex-col md:flex-row md:items-center md:gap-2 bg-[#777] p-2 drop-shadow-lg rounded">
             <Link href="/login" className="p-2 text-white">
               Login
             </Link>
@@ -116,6 +118,7 @@ const MainHeader = ({ userr }: MainHeaderProps) => {
           </div>
         )}
       </nav>
+
     </header>
   );
 };

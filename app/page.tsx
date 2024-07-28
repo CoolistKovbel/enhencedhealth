@@ -9,7 +9,9 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center gap-4 p-5">
       
       <div className="w-full h-[700px] flex items-center gap-4 flex-col justify-around md:flex-row bg-[#666] relative">
-        <div className="flex flex-col gap-2 justify-between items-center bg-[#444] md:w-[50%] p-4 rounded-lg h-fit md:h-[300px] z-50">
+        
+        <div className="flex flex-col gap-2 justify-around items-center bg-[#444] md:w-[60%] p-4 rounded-lg h-fit md:h-[350px] z-50">
+         
           <header className="flex items-center justify-center flex-col bg-[#000] p-3 rounded-lg drop-shadow-lg">
             <header className="w-full flex items-center justify-center flex-col drop-shadow-lg rounded-lg">
               <h1 className="text-3xl font-bold  mb-1 capitalize text-center">
@@ -29,10 +31,11 @@ export default function Home() {
 
           <Link
             href="#contact"
-            className="bg-[#111] p-2 font-bold rounded-lg hover:bg-[#444] text-center"
+            className="bg-[#111] uppercase p-2 font-bold rounded-lg hover:bg-[#333] drop-shadow-lg text-center"
           >
             Contact for a quote
           </Link>
+
         </div>
 
         <Image

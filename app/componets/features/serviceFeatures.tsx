@@ -40,35 +40,37 @@ const ServiceFeatures = () => {
         >
 
           {!item.image && (
-            <header className="w-full bg-[#111] p-10 flex text-center flex-col gap-4">
-
-              <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
-              <p className="text-md">{item.description}</p>
+            <header className="w-full bg-[#111] p-10 flex text-center justify-between h-[300px] flex-col gap-4 hover:drop-shadow-lg rounded">
+              <div>
+                <h2 className="text-5xl font-bold capitalize mb-3">{item.title}</h2>
+                <p className="text-xl">{item.description}</p>
+              </div>
 
               <Link
                 href={`${item.link}`}
-                className="bg-[#333] capitalize rounded-lg hover:bg-[#444] p-4 font-bold w-full md:w-[20%] text-center  "
+                className="bg-[#333] mt-2 capitalize rounded-lg hover:bg-[#444] p-4 font-bold w-full md:w-[50%] text-center mx-auto "
               >
                 get a quote
               </Link>
+
             </header>
           )}
 
 
           {item.image && (
             <div
-              className={`md:w-[80%] mx-auto drop-shadow-lg rounded-lg bg-[#111] p-10 flex gap-10 flex-col md:flex-row  ${
+              className={`md:w-[97%] mx-auto drop-shadow-lg rounded-lg bg-[#111] p-10 flex gap-10 flex-col md:flex-row   ${
                 i % 2 !== 0 ? " md:flex-row-reverse flex-row-reverse" : "flex-row"
               }`}
             >
 
-              <header className="flex flex-col gap-4 mb-4 md:mb-0 w-full justify-center w-[40%]">
+              <header className="flex flex-col gap-4 mb-4 md:mb-0 w-full justify-center w-[30%]">
                 <h2 className="text-3xl font-bold capitalize">{item.title}</h2>
 
                 <p className="text-md">{item.description}</p>
               </header>
 
-              <div className="w-[300px] h-[300px] relative mx-auto">
+              <div className="w-[500px] h-[300px] relative mx-auto">
                 <Image
                   src={item.image}
                   alt="feature of createing a profile"

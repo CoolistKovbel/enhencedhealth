@@ -33,7 +33,9 @@ const hadleImageUpload = async (image: any) => {
 
 // token and session actions
 export const getSession = async () => {
-  const session = await getIronSession<SessionData>(cookies(), sessionOptions);
+  const cookie:any = cookies() 
+
+  const session = await getIronSession<SessionData>(cookie, sessionOptions);
 
   if (!session.isLoggedIn) {
     session.isLoggedIn = defaultSession.isLoggedIn;
